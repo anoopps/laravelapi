@@ -16,8 +16,7 @@ type Query {
     patient(id: ID! @eq): Patient @find
     patients: [Patient!] @paginate(defaultCount: 5)
     
-    notes: [Note!] @paginate(defaultCount: 5)
-    
+    notes: [Note!] @paginate(defaultCount: 5)    
     addrType(addr_id: Int @eq):AddressType @find
 }
 type Team {
@@ -79,7 +78,32 @@ type AddressType{
     modifiedBy:Int
     modifiedDate:String
 }
-
+type Location {
+	id: ID!    
+	location_name: String
+	abbreviation: String
+	type: Int
+	status: Int
+}
+type Miscellaneous {
+	id: Int
+	name: String
+	created_by: Int
+	created_date: String
+	partner_sys_id: Int
+}
+type Diagnosis {
+	id: Int
+	name: String
+	status: Int
+	description: String
+}
+type Allergy {
+	id: Int
+	allergy_name: String
+	description: String
+	status: String
+}
 type Patient {
   id:ID!
   firstname:String
@@ -90,21 +114,24 @@ type Patient {
   roomNumber:String  
   nextFollowup:String
   teachComplete:String
-  teachReason:String
-  address:[Address!]! @hasMany 
-  notes:[Note!]! @hasMany 
+  teachReason:String  
   hospitalDischarge:String
   hospitalDischargeApproved:String
   vna:String
   vnaVerified:String  
   timeCommitment:String  
-  lastModifiedDate:Date  
+  last_modified_date:Date  
   team:Team! @belongsTo
-  site:Site! @belongsTo
+  site:Site! @belongsTo  
+  location:Location! @belongsTo
+  miscellaneous:[Miscellaneous!]! @hasMany 
+  address:[Address!]! @hasMany 
+  notes:[Note!]! @hasMany
+  diagnosis:[Diagnosis!]! @hasMany
+  allergy:[Allergy!]! @hasMany
   }
   
 type Mutation{
  createUser(name: String! , email: String!): User! @create
- createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create
- 
+ createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create 
 }

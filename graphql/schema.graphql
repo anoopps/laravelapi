@@ -1,0 +1,110 @@
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
+
+type Query {
+    team(id: ID! @eq): Team @find
+	teams: [Team!] ! @paginate(defaultCount: 2)
+    
+    site(id: ID! @eq): Site @find
+    sites: [Site!] @paginate(defaultCount:3)
+    
+    address(id: ID! @eq): Address @find
+    addresses: [Address!] @paginate(defaultCount: 2)
+    
+    post(id: ID! @eq): Post @find
+    posts: [Post!] @paginate(defaultCount: 3)
+    
+    patient(id: ID! @eq): Patient @find
+    patients: [Patient!] @paginate(defaultCount: 5)
+    
+    notes: [Note!] @paginate(defaultCount: 5)
+    
+    addrType(addr_id: Int @eq):AddressType @find
+}
+type Team {
+	 id: ID!
+	name: String
+	status: Boolean
+}
+type Site {
+	id: ID!
+	name: String
+    status:Int
+    partner_sys_id:Int
+} 
+type User {
+    id: ID!
+    name: String!
+    email: String!   
+    posts: [Post!]! @hasMany
+}
+
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+    author: User! @belongsTo
+    comments: [Comment!]! @hasMany
+}
+type Comment {
+    id: ID!
+    reply: String!
+    post: Post! @belongsTo
+}
+type Note {
+	id: ID!
+	patient_id: Int
+	category_id: Int
+	subject: String
+	body: String
+	status: Boolean
+}
+ type Address {
+	id: ID!
+	addr_id: Int
+	patient_id: Int	 
+	addresses: String
+	city: String
+	state: String
+	country: String
+	zip_code: String
+	status: Boolean
+}
+
+type AddressType{
+    id : Int
+    name:String
+    status:String
+    createdBy:Int
+    createdDate:String
+    modifiedBy:Int
+    modifiedDate:String
+}
+
+type Patient {
+  id:ID!
+  firstname:String
+  lastname:String
+  middlename:String
+  dob:String
+  precautions:String
+  roomNumber:String  
+  nextFollowup:String
+  teachComplete:String
+  teachReason:String
+  address:[Address!]! @hasMany 
+  notes:[Note!]! @hasMany 
+  hospitalDischarge:String
+  hospitalDischargeApproved:String
+  vna:String
+  vnaVerified:String  
+  timeCommitment:String  
+  lastModifiedDate:Date  
+  team:Team! @belongsTo
+  site:Site! @belongsTo
+  }
+  
+type Mutation{
+ createUser(name: String! , email: String!): User! @create
+ createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create
+ 
+}

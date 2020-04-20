@@ -1,3 +1,7 @@
+"A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+"A date string with format `Y-m-d`, e.g. `2011-05-23`."
 scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
 type Query {
@@ -92,18 +96,41 @@ type Miscellaneous {
 	created_date: String
 	partner_sys_id: Int
 }
-type Diagnosis {
+type DiagnosisDetails {
+    patient_id:Int
+    diagnosis_id:Int
+    status:Int
+    created_date:String
+    created_by:Int
+    diagnosis:Diagnosis! @belongsTo	
+}
+
+type Diagnosis{
 	id: Int
 	name: String
 	status: Int
-	description: String
+    description: String
 }
-type Allergy {
+
+type AllergyDetails {
 	id: Int
-	allergy_name: String
-	description: String
+    patient_id: Int
+    allergy_id: Int
+    status: Int      
+	allergyDetails: Allergy! @belongsTo
+    created_date:String
 	status: String
 }
+
+type Allergy{
+    allergy_name: String
+    description: String
+    status: Int
+    created_by: Int
+    created_date : Date
+    partner_sys_id: Int
+}
+
 type Patient {
   id:ID!
   firstname:String
@@ -120,17 +147,18 @@ type Patient {
   vna:String
   vnaVerified:String  
   timeCommitment:String  
-  last_modified_date:Date  
+  lastModifiedDate:Date  
   team:Team! @belongsTo
   site:Site! @belongsTo  
   location:Location! @belongsTo
   miscellaneous:[Miscellaneous!]! @hasMany 
   address:[Address!]! @hasMany 
   notes:[Note!]! @hasMany
-  diagnosis:[Diagnosis!]! @hasMany
-  allergy:[Allergy!]! @hasMany
+  diagnosis:[DiagnosisDetails!]! @hasMany
+  allergy:[AllergyDetails!]! @hasMany
   }
   
+    
 type Mutation{
  createUser(name: String! , email: String!): User! @create
  createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create 

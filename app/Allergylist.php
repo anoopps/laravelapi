@@ -11,6 +11,9 @@ class Allergy extends Model
 {
     protected $table = "ch_pulse_allergy";
     public $timestamp = false;
-
-   
+    
+    public function allergy(): BelongsTo
+    {
+        return $this->belongsTo(Allergymapping::class);
+    }
 }

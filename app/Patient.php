@@ -43,11 +43,11 @@ class Patient extends Model
     }
     public function diagnosis():HasMany
     {        
-        return $this->hasMany(Diagnosis::class);
+        return $this->hasMany(DiagnosisDetails::class);
     }
      public function allergy(): HasMany
     {        
-        return $this->hasMany(Allergy::class);
+        return $this->hasMany(AllergyDetails::class);
     }
   
   

@@ -9,7 +9,4 @@ class Location extends Model
 {
     protected $table = "ch_pulse_location";
     public $timestamps = False;
-    
-    
-    
 }

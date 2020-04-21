@@ -10,7 +10,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Allergy extends Model
 {
     protected $table = "ch_pulse_allergy";
-    public $timestamp = false;
-
-   
+    public $timestamp = false;   
 }

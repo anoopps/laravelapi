@@ -123,9 +123,10 @@ type AllergyDetails {
 }
 
 type Allergy{
+    id:Int
     allergy_name: String
     description: String
-    status: Int
+    status: Int    
     created_by: Int
     created_date : Date
     partner_sys_id: Int
@@ -138,15 +139,15 @@ type Patient {
   middlename:String
   dob:String
   precautions:String
-  roomNumber:String  
-  nextFollowup:String
-  teachComplete:String
-  teachReason:String  
-  hospitalDischarge:String
-  hospitalDischargeApproved:String
+  room_number:String  
+  next_followup:String
+  teach_complete:String
+  teach_reason:String  
+  hospital_discharge:String
+  hospital_discharge_approved:String
   vna:String
-  vnaVerified:String  
-  timeCommitment:String  
+  vna_verified:String  
+  time_commitment:String  
   lastModifiedDate:Date  
   team:Team! @belongsTo
   site:Site! @belongsTo  

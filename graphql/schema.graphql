@@ -13,16 +13,30 @@ type Query {
     
     address(id: ID! @eq): Address @find
     addresses: [Address!] @paginate(defaultCount: 2)
-    
-    post(id: ID! @eq): Post @find
-    posts: [Post!] @paginate(defaultCount: 3)
-    
+        
     patient(id: ID! @eq): Patient @find
-    patients: [Patient!] @paginate(defaultCount: 5)
-    
+    patients: [Patient!] @paginate(defaultCount: 5)    
+      
     notes: [Note!] @paginate(defaultCount: 5)    
     addrType(addr_id: Int @eq):AddressType @find
+    
+    pulseapps: [PulseApp!] ! @paginate(defaultCount: 2)
+      
 }
+
+type PulseApp{
+    id:ID!
+    app_name:String
+    app_uuid:String
+    app_redirect_url:String
+    app_launch_url:String
+    app_icon_name:String
+    app_status:Boolean
+    app_description:String
+    created_by:Int
+    created_at:String
+}
+ 
 type Team {
 	 id: ID!
 	name: String
@@ -41,18 +55,7 @@ type User {
     posts: [Post!]! @hasMany
 }
 
-type Post {
-    id: ID!
-    title: String!
-    content: String!
-    author: User! @belongsTo
-    comments: [Comment!]! @hasMany
-}
-type Comment {
-    id: ID!
-    reply: String!
-    post: Post! @belongsTo
-}
+
 type Note {
 	id: ID!
 	patient_id: Int
@@ -148,7 +151,7 @@ type Patient {
   vna:String
   vna_verified:String  
   time_commitment:String  
-  lastModifiedDate:Date  
+  last_modified_date:String  
   team:Team! @belongsTo
   site:Site! @belongsTo  
   location:Location! @belongsTo

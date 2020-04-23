@@ -487,7 +487,7 @@
 </style>
 <div id="loading-wrapper">
     <svg class="logo" viewBox="0 0 128 128" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>GraphQL Playground Logo</title>
+        <title>Pulse GraphQL Playground</title>
         <defs>
             <linearGradient id="linearGradient-1" x1="4.86%" x2="96.21%" y1="0%" y2="99.66%">
                 <stop stop-color="#E00082" stop-opacity=".8" offset="0%"></stop>

@@ -19,3 +19,15 @@ Route::get('/', function () {
 
 $router->get('teams','Dashboard@list');
 $router->post('addteam','Dashboard@store');
+
+//temporary json list
+$router->get('getpatients','Dashboard@patients');
+
+$router->get('help','GraphqlController@show');
+$router->post('test','GraphqlController@store');
+
+
+Route::post('/foo', function () {
+    echo "test routing";
+    return;
+});

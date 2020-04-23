@@ -23,6 +23,7 @@ type Query {
     pulseapps: [PulseApp!] ! @paginate(defaultCount: 2)
       
 }
+ 
 
 type PulseApp{
     id:ID!
@@ -48,13 +49,6 @@ type Site {
     status:Int
     partner_sys_id:Int
 } 
-type User {
-    id: ID!
-    name: String!
-    email: String!   
-    posts: [Post!]! @hasMany
-}
-
 
 type Note {
 	id: ID!
@@ -144,17 +138,17 @@ type Patient {
   precautions:String
   room_number:String  
   next_followup:String
-  teach_complete:String
+  teach_complete:Boolean
   teach_reason:String  
   hospital_discharge:String
-  hospital_discharge_approved:String
+  hospital_discharge_approved:Boolean
   vna:String
-  vna_verified:String  
+  vna_verified:Boolean  
   time_commitment:String  
   last_modified_date:String  
-  team:Team! @belongsTo
-  site:Site! @belongsTo  
-  location:Location! @belongsTo
+  team:Team @belongsTo
+  site:Site @belongsTo  
+  location:Location @belongsTo
   miscellaneous:[Miscellaneous!]! @hasMany 
   address:[Address!]! @hasMany 
   notes:[Note!]! @hasMany
@@ -163,7 +157,7 @@ type Patient {
   }
   
     
-type Mutation{
- createUser(name: String! , email: String!): User! @create
- createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create 
+type Mutation{ 
+ createSite(name: String! , status: Int!, created_by:Int, partner_sys_id:Int ): Site! @create
+ 
 }

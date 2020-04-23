@@ -54,7 +54,7 @@ class Dashboard extends Controller
      */
     public function store(Request $request)
     {
-      //  print_r( $request->input() ); exit;
+      print_r( $request->input() ); exit;
         $team = new Team;
         $team->name = $request->input("name");
         $team->status = $request->input("status");
@@ -69,6 +69,13 @@ class Dashboard extends Controller
             $info = "Team Not Saved";
         }
         return ResponseBuilder::response($success, $info, $data);  
+    }
+    
+    
+    public function patients(){
+        
+        $json = json_encode('[{"firstName":"Dennis","lastName":"J","middleName":"Abbott","dob":"1920-01-14 00:00:00","precautions":"Test precautions data","roomNumber":null,"nextFollowup":"2020-03-19 00:00:00","teachComplete":true,"teachReason":"test teach reason","hospitalDischarge":"2020-03-19 00:00:00","hospitalDischargeApproved":true,"vna":"No VNA","vnaVerified":false,"timeCommitment":"2020-03-04 00:00:00","lastModifiedDate":"2020-03-17 00:00:00","team":{"id":"1","name":"Team1"},"site":{"id":"1","name":"Site1"},"location":{"id":"104","locationName":"Alice Peck Day Hospital"},"address":[{"addrId":1,"patientId":1,"city":"amrtsir","state":"Rajastan","country":"India","addresses":"16 Sarget Road, Sandown, NH "},{"addrId":2,"patientId":1,"city":"amrtsir","state":"Rajastan","country":"India","addresses":"16 Sarget Road, Sandown, NH "}],"notes":[{"id":"1","body":"AHlDPx8lwR","subject":"qLzW"},{"id":"2","body":"2eQPFGOawH","subject":"pRLO"},{"id":"3","body":"D6RDKcLZ5q","subject":"TECy"},{"id":"4","body":"ItjPoREtW2","subject":"Jy29"},{"id":"5","body":"sKwKj6nqTy","subject":"m1te"},{"id":"6","body":"WH7zTscFLG","subject":"vm16"},{"id":"7","body":"6PR4P4a2Ys","subject":"cR7t"},{"id":"8","body":"q2pdIhkSyS","subject":"sPfV"},{"id":"9","body":"TVtLUft785","subject":"qaXv"},{"id":"10","body":"mJaG1MJ79l","subject":"7Gfw"}],"diagnosis":[{"diagnosis":{"status":1,"description":"diagnosis1"}},{"diagnosis":{"status":1,"description":"diagnosis2"}}]},{"firstName":"Shirley","lastName":"A","middleName":"Abbott","dob":"1920-01-14 00:00:00","precautions":"Test precautions data","roomNumber":null,"nextFollowup":"2020-03-19 00:00:00","teachComplete":true,"teachReason":"test teach reason","hospitalDischarge":"2020-03-19 00:00:00","hospitalDischargeApproved":true,"vna":"No VNA","vnaVerified":false,"timeCommitment":"2020-03-04 00:00:00","lastModifiedDate":"2020-03-17 00:00:00","team":{"id":"2","name":"Team2"},"site":{"id":"2","name":"Site2"},"location":{"id":"104","locationName":"Alice Peck Day Hospital"},"address":[],"notes":[],"diagnosis":[]},{"firstName":"Dennis","lastName":"J","middleName":"Abbott","dob":"1920-01-14 00:00:00","precautions":"Test precautions data","roomNumber":null,"nextFollowup":"2020-03-19 00:00:00","teachComplete":true,"teachReason":"test teach reason","hospitalDischarge":"2020-03-19 00:00:00","hospitalDischargeApproved":true,"vna":"No VNA","vnaVerified":false,"timeCommitment":"2020-03-04 00:00:00","lastModifiedDate":"2020-03-17 00:00:00","team":{"id":"3","name":"Team created from postman"},"site":{"id":"3","name":"site from graphql "},"location":{"id":"104","locationName":"Alice Peck Day Hospital"},"address":[{"addrId":3,"patientId":3,"city":"amrtsir","state":"Rajastan","country":"India","addresses":"16 Sarget Road, Sandown, NH "}],"notes":[],"diagnosis":[]},{"firstName":"Melanie","lastName":"D","middleName":"Abdenior","dob":"1920-01-14 00:00:00","precautions":"Test precautions data","roomNumber":null,"nextFollowup":"2020-03-19 00:00:00","teachComplete":true,"teachReason":"test teach reason","hospitalDischarge":"2020-03-19 00:00:00","hospitalDischargeApproved":true,"vna":"No VNA","vnaVerified":false,"timeCommitment":"2020-03-04 00:00:00","lastModifiedDate":"2020-03-17 00:00:00","team":{"id":"4","name":"Team created from postman"},"site":{"id":"4","name":"site from graphql "},"location":{"id":"104","locationName":"Alice Peck Day Hospital"},"address":[{"addrId":4,"patientId":4,"city":"amrtsir","state":"Rajastan","country":"India","addresses":"16 Sarget Road, Sandown, NH "}],"notes":[],"diagnosis":[]},{"firstName":"Steve","lastName":"C","middleName":"Ackerman","dob":"1920-01-14 00:00:00","precautions":"Test precautions data","roomNumber":null,"nextFollowup":"2020-03-19 00:00:00","teachComplete":true,"teachReason":"test teach reason","hospitalDischarge":"2020-03-19 00:00:00","hospitalDischargeApproved":true,"vna":"No VNA","vnaVerified":false,"timeCommitment":"2020-03-04 00:00:00","lastModifiedDate":"2020-03-17 00:00:00","team":{"id":"5","name":"Team created from postman"},"site":{"id":"5","name":"site from graphql "},"location":{"id":"104","locationName":"Alice Peck Day Hospital"},"address":[{"addrId":5,"patientId":5,"city":"amrtsir","state":"Rajastan","country":"India","addresses":"16 Sarget Road, Sandown, NH "}],"notes":[],"diagnosis":[]}]');
+        return $json;
     }
 
     /**
@@ -115,4 +122,5 @@ class Dashboard extends Controller
     {
         //
     }
+    
 }

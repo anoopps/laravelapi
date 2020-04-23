@@ -25,9 +25,6 @@ $router->get('getpatients','Dashboard@patients');
 
 $router->get('help','GraphqlController@show');
 $router->post('test','GraphqlController@store');
+$router->get('table','GraphqlController@createTable');
 
-
-Route::post('/foo', function () {
-    echo "test routing";
-    return;
-});
+ 
